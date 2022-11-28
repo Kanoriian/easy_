@@ -77,47 +77,38 @@ string chiter(string nn){
 }
 
 string shaman_c_dalnevo_voctoka(string terpila, long long oblomchik){
-    string nakonezto = terpila;
     char cent;
-    int a, vitya;
+    int vitya;
     vitya = 0;
-    a = 5000000;
-    while(a > 0){
-        cent = terpila[oblomchik];
-        a = a - 1;
-        cout << terpila << endl;
+    terpila = zaim(terpila);
+    while(1){
+        cent = terpila[0];
         if(cent == '1'){
+            vitya += 1;
+            terpila = zaim(terpila);
             terpila.pop_back();
-            vitya = vitya + 1;
-            cout << terpila << endl;
+            terpila = zaim(terpila);
         }else
         if(cent = '0'){
+            terpila = zaim(terpila);
             terpila.pop_back();
-            terpila = terpila + "1";
-            cout << terpila << endl;
-            while(vitya > 0){
-                terpila = terpila + "0";
-                vitya = vitya - 1;
-                cout << terpila << endl;
+            terpila += "1";
+            while(vitya){
+                terpila += "0";
+                vitya -= 1;
             }
             return terpila;
         }
     }
-    return terpila;
 }
 
 int main() {
-    int debil;
 	long long n,  n2, oblomchik;
 	string nn, terpila, zadolbish;
 	ofstream vera;
 	vera.open("vera.txt");
 
-
-
-cin >> debil;
-while(debil > 0){
-cin >> debil;
+while(1){
 
 	cin >> n;
 	cin >> oblomchik;
@@ -125,6 +116,11 @@ cin >> debil;
 
 	if(n >= 0){
         cout << n;
+        n = n * -1;
+        nn = otrok(n);
+	    nn = zaim(nn);
+	    nn = feya(nn, oblomchik);
+        cout << "direct code: 1" << nn << endl;
         return 0;
 	}
 
@@ -133,10 +129,13 @@ cin >> debil;
 	nn = zaim(nn);
 	nn = feya(nn, oblomchik);
     cout << "direct code: 1" << nn << endl;
+
     terpila = chiter(nn);
     cout << "reverse code: 1" << terpila << endl;
+
     zadolbish = shaman_c_dalnevo_voctoka(terpila, oblomchik);
     cout << "additional code: 1" << zadolbish << endl;
+
     cout << "I did it, give me 5";
 
     vera << n << endl << oblomchik + 1 << endl;
