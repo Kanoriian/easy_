@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include<fstream>
 
 using namespace std;
 
@@ -78,8 +79,8 @@ string chiter(string nn){
 string shaman_c_dalnevo_voctoka(string terpila, long long oblomchik){
     string nakonezto = terpila;
     char cent;
-    int a, sasat;
-    sasat = 0;
+    int a, vitya;
+    vitya = 0;
     a = 5000000;
     while(a > 0){
         cent = terpila[oblomchik];
@@ -87,16 +88,16 @@ string shaman_c_dalnevo_voctoka(string terpila, long long oblomchik){
         cout << terpila << endl;
         if(cent == '1'){
             terpila.pop_back();
-            sasat = sasat + 1;
+            vitya = vitya + 1;
             cout << terpila << endl;
         }else
         if(cent = '0'){
             terpila.pop_back();
             terpila = terpila + "1";
             cout << terpila << endl;
-            while(sasat > 0){
+            while(vitya > 0){
                 terpila = terpila + "0";
-                sasat = sasat - 1;
+                vitya = vitya - 1;
                 cout << terpila << endl;
             }
             return terpila;
@@ -109,6 +110,10 @@ int main() {
     int debil;
 	long long n,  n2, oblomchik;
 	string nn, terpila, zadolbish;
+	ofstream vera;
+	vera.open("vera.txt");
+
+
 
 cin >> debil;
 while(debil > 0){
@@ -133,5 +138,11 @@ cin >> debil;
     zadolbish = shaman_c_dalnevo_voctoka(terpila, oblomchik);
     cout << "additional code: 1" << zadolbish << endl;
     cout << "I did it, give me 5";
+
+    vera << n << endl << oblomchik + 1 << endl;
+    vera << "direct code: 1" << nn << endl;
+    vera << "reverse code: 1" << terpila << endl;
+    vera << "additional code: 1" << zadolbish << endl;
     }
+    vera.close();
 }
